@@ -1,6 +1,6 @@
 import tkinter as tk
 
-# ----------------- Animation Functions -----------------
+# Animation Functions
 def type_text(widget, text, idx=0):
     """Typing animation for display"""
     if idx <= len(text):
@@ -23,8 +23,8 @@ def slide_in(widget, target_x, y, step=10):
     else:
         widget.place(x=target_x, y=y)
 
-# ----------------- Calculator Functions -----------------
-def press(key):
+# Calculator Functions 
+    def press(key):
     if key == "=":
         try:
             result = str(eval(display_var.get()))
@@ -36,13 +36,13 @@ def press(key):
     else:
         display_var.set(display_var.get() + key)
 
-# ----------------- Tkinter Setup -----------------
+# Tkinter Setup 
 root = tk.Tk()
 root.title("Hafsa Hammadh's Calculator")
 root.geometry("420x580")
 root.config(bg="#1e1e2f")
 
-# ----------------- Box Border -----------------
+# Box Border 
 border_box = tk.Frame(root, bg="white", bd=3, relief="solid")
 border_box.place(x=15, y=15, width=390, height=540)
 
