@@ -1,6 +1,6 @@
 import tkinter as tk
 
-#Animation Functions
+# ----------------- Animation Functions -----------------
 def type_text(widget, text, idx=0):
     """Typing animation for display"""
     if idx <= len(text):
@@ -23,7 +23,7 @@ def slide_in(widget, target_x, y, step=10):
     else:
         widget.place(x=target_x, y=y)
 
-#Calculator Functions
+# ----------------- Calculator Functions -----------------
 def press(key):
     if key == "=":
         try:
@@ -36,18 +36,21 @@ def press(key):
     else:
         display_var.set(display_var.get() + key)
 
-#Tkinter Setup
+# ----------------- Tkinter Setup -----------------
 root = tk.Tk()
-root.title("Hafsa Hammadh's Animated Calculator")
-root.geometry("400x550")
+root.title("Hafsa Hammadh's Calculator")
+root.geometry("420x580")
 root.config(bg="#1e1e2f")
 
-display_var = tk.StringVar()
-display_entry = tk.Entry(root, textvariable=display_var, font=("Arial", 24), bd=0, bg="#2e2e3e", fg="white", justify="right")
-display_entry.place(x=20, y=60, width=360, height=50)
+# ----------------- Box Border -----------------
+border_box = tk.Frame(root, bg="white", bd=3, relief="solid")
+border_box.place(x=15, y=15, width=390, height=540)
 
-# Welcome Label with fade-in
-welcome_label = tk.Label(root, text="Welcome to Hafsa Hammadh's Calculator!", font=("Arial", 16, "bold"), fg="#ffffff", bg="#1e1e2f")
+display_var = tk.StringVar()
+
+# Welcome Label
+welcome_label = tk.Label(border_box, text="Welcome to Hafsa's Calculator!",
+                         font=("Arial", 16, "bold"), fg="#ffffff", bg="#1e1e2f")
 welcome_label.place(x=20, y=10)
 
 # Fade-in effect
@@ -58,7 +61,13 @@ def fade_in_label():
     if alpha <= 1:
         welcome_label.config(fg=f"#{int(255*alpha):02x}{int(255*alpha):02x}{int(255*alpha):02x}")
         root.after(100, fade_in_label)
+
 fade_in_label()
+
+# Display Entry
+display_entry = tk.Entry(border_box, textvariable=display_var, font=("Arial", 24),
+                         bd=0, bg="#2e2e3e", fg="white", justify="right")
+display_entry.place(x=15, y=60, width=350, height=50)
 
 # Button layout
 buttons = [
@@ -80,9 +89,9 @@ spacing = 10
 # Create buttons
 for i, row in enumerate(buttons):
     for j, key in enumerate(row):
-        x = 20 + j * (btn_width + spacing)
+        x = 15 + j * (btn_width + spacing)
         y = start_y + i * (btn_height + spacing)
-        b = tk.Button(root, text=key, font=("Arial", 20), bg="#3e3e5e", fg="white",
+        b = tk.Button(border_box, text=key, font=("Arial", 20), bg="#3e3e5e", fg="white",
                       activebackground="#5e5e7e", activeforeground="white", bd=0,
                       command=lambda k=key: press(k))
         all_buttons.append(b)
